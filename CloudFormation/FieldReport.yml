@@ -1,0 +1,92 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+Description: The demo configures resources for Field Report demo.
+
+# Parameters:
+
+Resources:
+  InboundReports:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      NotificationConfiguration:
+        TopicConfigurations:
+          - Event: s3:ObjectCreated:*
+            Topic: !Ref ReportReceived
+            Filter:
+              S3Key:
+                Rules:
+                  - Name: suffix
+                    Value: .png
+
+  ReportReceived:
+    Type: AWS::SNS::Topic
+    Properties:
+      Subscription:
+        - Endpoint: !GetAtt NewReportQueue.Arn
+          Protocol: sqs
+
+  ReportReceivedPolicy:
+    Type: AWS::SNS::TopicPolicy
+    Properties:
+      PolicyDocument:
+        Id: ReportReceivedTopicPolicy
+        Version: 2012-10-17
+        Statement:
+          - Sid: AllowReceivedReportsFromS3
+            Effect: Allow
+            Principal:
+              Service: s3.amazonaws.com
+            Action:
+              - SNS:Publish
+            Resource: !Ref ReportReceived
+      Topics:
+        - !Ref ReportReceived
+
+  NewReportQueue:
+    Type: AWS::SQS::Queue
+
+  NewReportQueuePolicy:
+    Type: AWS::SQS::QueuePolicy
+    Properties:
+      PolicyDocument:
+        Id: ReportReceivedQueuePolicy
+        Version: 2012-10-17
+        Statement:
+          - Sid: AllowNewReportsFromSNS
+            Effect: Allow
+            Principal:
+              Service: sns.amazonaws.com
+            Action:
+              - SQS:SendMessage
+            Resource: !GetAtt NewReportQueue.Arn
+            Condition:
+              ArnEquals:
+                aws:SourceArn: !Ref ReportReceived
+      Queues:
+        - !Ref NewReportQueue
+
+  ArchiveReports:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+
+Outputs:
+  InboundReportsBucketName:
+    Description: The name of the bucket for inbound reports.
+    Value: !Ref InboundReports
+  ReportReceivedTopic:
+    Description: The SNS Topic ARN for received reports.
+    Value: !Ref ReportReceived
+  NewReportQueue:
+    Description: The SQS Queue URL for processing new reports.
+    Value: !Ref NewReportQueue
+  ArchiveReportsBucketName:
+    Description: The name of the bucket for archive reports.
+    Value: !Ref ArchiveReports
