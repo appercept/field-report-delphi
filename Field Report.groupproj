@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{A9EFF701-6E4C-4EC3-AB28-6F2F40F5E38C}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="FieldReport\FieldReport.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="FieldReport">
+        <MSBuild Projects="FieldReport\FieldReport.dproj"/>
+    </Target>
+    <Target Name="FieldReport:Clean">
+        <MSBuild Projects="FieldReport\FieldReport.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FieldReport:Make">
+        <MSBuild Projects="FieldReport\FieldReport.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="FieldReport"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="FieldReport:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="FieldReport:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

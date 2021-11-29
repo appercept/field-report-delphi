@@ -67,3 +67,11 @@ __recovery/
 
 # Boss dependency manager vendor folder https://github.com/HashLoad/boss
 modules/
+
+# Ignore Build outputs
+**/iOSDevice64/Debug
+**/iOSDevice64/Release
+**/Win32/Debug
+**/Win32/Release
+**/Win64/Debug
+**/Win64/Release

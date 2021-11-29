@@ -1,0 +1,122 @@
+object HeaderFooterForm: THeaderFooterForm
+  Left = 0
+  Top = 0
+  Caption = 'Header Footer Form'
+  ClientHeight = 567
+  ClientWidth = 384
+  FormFactor.Width = 1440
+  FormFactor.Height = 900
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnVirtualKeyboardShown = FormVirtualKeyboardShown
+  OnVirtualKeyboardHidden = FormVirtualKeyboardHidden
+  DesignerMasterStyle = 0
+  object Header: TToolBar
+    Size.Width = 384.000000000000000000
+    Size.Height = 48.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object HeaderLabel: TLabel
+      Align = Contents
+      Size.Width = 384.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'toollabel'
+      TextSettings.HorzAlign = Center
+      Text = 'Field Report'
+    end
+  end
+  object Footer: TToolBar
+    Align = Bottom
+    Position.Y = 519.000000000000000000
+    Size.Width = 384.000000000000000000
+    Size.Height = 48.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'bottomtoolbar'
+    TabOrder = 1
+    object BtnTakePicture: TSpeedButton
+      Action = ActionTakePhotoForReport
+      Align = Center
+      Enabled = True
+      ImageIndex = -1
+      Size.Width = 48.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'cameratoolbutton'
+    end
+    object BtnSaveReport: TSpeedButton
+      Action = ActionSaveReport
+      Align = Right
+      Enabled = True
+      ImageIndex = -1
+      Position.X = 336.000000000000000000
+      Size.Width = 48.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'organizetoolbutton'
+    end
+    object BtnDiscardReport: TSpeedButton
+      Action = ActionDiscardReport
+      Align = Left
+      Enabled = True
+      ImageIndex = -1
+      Size.Width = 48.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'trashtoolbutton'
+    end
+  end
+  object ComposePanel: TPanel
+    Align = Bottom
+    Position.Y = 399.000000000000000000
+    Size.Width = 384.000000000000000000
+    Size.Height = 120.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    object PreviewImage: TImage
+      MultiResBitmap = <
+        item
+        end>
+      Align = Left
+      Margins.Left = 8.000000000000000000
+      Margins.Top = 8.000000000000000000
+      Margins.Bottom = 8.000000000000000000
+      Position.X = 8.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 104.000000000000000000
+      Size.Height = 104.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object NotesEdit: TMemo
+      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+      DataDetectorTypes = []
+      Align = Client
+      Margins.Left = 8.000000000000000000
+      Margins.Top = 8.000000000000000000
+      Margins.Right = 8.000000000000000000
+      Margins.Bottom = 8.000000000000000000
+      Size.Width = 256.000000000000000000
+      Size.Height = 104.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Viewport.Width = 252.000000000000000000
+      Viewport.Height = 100.000000000000000000
+    end
+  end
+  object ActionList1: TActionList
+    Left = 176
+    Top = 272
+    object ActionTakePhotoForReport: TTakePhotoFromCameraAction
+      Category = 'Reports'
+      OnDidFinishTaking = ActionTakePhotoForReportDidFinishTaking
+    end
+    object ActionDiscardReport: TAction
+      Category = 'Reports'
+      Text = 'Discard'
+    end
+    object ActionSaveReport: TAction
+      Category = 'Reports'
+      Text = 'Save Report'
+    end
+  end
+end
