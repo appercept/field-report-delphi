@@ -4,6 +4,7 @@ object HeaderFooterForm: THeaderFooterForm
   Caption = 'Header Footer Form'
   ClientHeight = 567
   ClientWidth = 384
+  Padding.Bottom = 20.000000000000000000
   FormFactor.Width = 1440
   FormFactor.Height = 900
   FormFactor.Devices = [Desktop]
@@ -28,7 +29,7 @@ object HeaderFooterForm: THeaderFooterForm
   end
   object Footer: TToolBar
     Align = Bottom
-    Position.Y = 519.000000000000000000
+    Position.Y = 499.000000000000000000
     Size.Width = 384.000000000000000000
     Size.Height = 48.000000000000000000
     Size.PlatformDefault = False
@@ -68,7 +69,7 @@ object HeaderFooterForm: THeaderFooterForm
   end
   object ComposePanel: TPanel
     Align = Bottom
-    Position.Y = 399.000000000000000000
+    Position.Y = 379.000000000000000000
     Size.Width = 384.000000000000000000
     Size.Height = 120.000000000000000000
     Size.PlatformDefault = False
@@ -103,9 +104,18 @@ object HeaderFooterForm: THeaderFooterForm
       Viewport.Height = 100.000000000000000000
     end
   end
+  object ReportContainer: TVertScrollBox
+    Align = Client
+    Size.Width = 384.000000000000000000
+    Size.Height = 331.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 6
+    Viewport.Width = 384.000000000000000000
+    Viewport.Height = 331.000000000000000000
+  end
   object ActionList1: TActionList
-    Left = 176
-    Top = 272
+    Left = 56
+    Top = 80
     object ActionTakePhotoForReport: TTakePhotoFromCameraAction
       Category = 'Reports'
       OnDidFinishTaking = ActionTakePhotoForReportDidFinishTaking
@@ -113,10 +123,12 @@ object HeaderFooterForm: THeaderFooterForm
     object ActionDiscardReport: TAction
       Category = 'Reports'
       Text = 'Discard'
+      OnExecute = ActionDiscardReportExecute
     end
     object ActionSaveReport: TAction
       Category = 'Reports'
       Text = 'Save Report'
+      OnExecute = ActionSaveReportExecute
     end
   end
 end

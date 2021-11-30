@@ -1,0 +1,41 @@
+object ReportItemFrame: TReportItemFrame
+  Align = Top
+  Size.Width = 320.000000000000000000
+  Size.Height = 82.000000000000000000
+  Size.PlatformDefault = False
+  object ThumbnailImage: TImage
+    MultiResBitmap = <
+      item
+      end>
+    Align = Left
+    Margins.Left = 4.000000000000000000
+    Margins.Top = 4.000000000000000000
+    Margins.Bottom = 4.000000000000000000
+    Position.X = 4.000000000000000000
+    Position.Y = 4.000000000000000000
+    Size.Width = 73.000000000000000000
+    Size.Height = 65.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object NotesLabel: TLabel
+    Align = Client
+    Margins.Left = 4.000000000000000000
+    Margins.Top = 4.000000000000000000
+    Margins.Right = 4.000000000000000000
+    Margins.Bottom = 4.000000000000000000
+    Size.Width = 235.000000000000000000
+    Size.Height = 65.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.VertAlign = Leading
+    Text = 'NotesLabel'
+    TabOrder = 1
+  end
+  object UploadProgressBar: TProgressBar
+    Align = Bottom
+    Orientation = Horizontal
+    Position.Y = 73.000000000000000000
+    Size.Width = 320.000000000000000000
+    Size.Height = 9.000000000000000000
+    Size.PlatformDefault = False
+  end
+end
