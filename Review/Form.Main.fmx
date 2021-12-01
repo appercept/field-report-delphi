@@ -1,0 +1,60 @@
+object MainForm: TMainForm
+  Left = 0
+  Top = 0
+  Caption = 'Review Field Reports'
+  ClientHeight = 480
+  ClientWidth = 640
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnClose = FormClose
+  OnShow = FormShow
+  DesignerMasterStyle = 0
+  object ReviewImage: TImage
+    MultiResBitmap = <
+      item
+      end>
+    Align = Client
+    Margins.Left = 8.000000000000000000
+    Margins.Top = 8.000000000000000000
+    Margins.Right = 8.000000000000000000
+    Margins.Bottom = 8.000000000000000000
+    Size.Width = 624.000000000000000000
+    Size.Height = 368.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object Memo1: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    Align = Bottom
+    Position.Y = 384.000000000000000000
+    Size.Width = 640.000000000000000000
+    Size.Height = 96.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Viewport.Width = 636.000000000000000000
+    Viewport.Height = 92.000000000000000000
+  end
+  object CountDownLabel: TLabel
+    Anchors = [akTop, akRight]
+    AutoSize = True
+    StyledSettings = [Family]
+    Position.X = 296.000000000000000000
+    Position.Y = 16.000000000000000000
+    Size.Width = 328.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 16.000000000000000000
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+    TextSettings.FontColor = claCrimson
+    TextSettings.HorzAlign = Trailing
+    Text = 'Waiting...'
+    TabOrder = 2
+  end
+  object CountDownTimer: TTimer
+    Enabled = False
+    OnTimer = CountDownTimerTimer
+    Left = 304
+    Top = 224
+  end
+end

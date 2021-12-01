@@ -6,6 +6,9 @@
         <Projects Include="FieldReport\FieldReport.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="Review\Review.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -23,14 +26,23 @@
     <Target Name="FieldReport:Make">
         <MSBuild Projects="FieldReport\FieldReport.dproj" Targets="Make"/>
     </Target>
+    <Target Name="Review">
+        <MSBuild Projects="Review\Review.dproj"/>
+    </Target>
+    <Target Name="Review:Clean">
+        <MSBuild Projects="Review\Review.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Review:Make">
+        <MSBuild Projects="Review\Review.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="FieldReport"/>
+        <CallTarget Targets="FieldReport;Review"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="FieldReport:Clean"/>
+        <CallTarget Targets="FieldReport:Clean;Review:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="FieldReport:Make"/>
+        <CallTarget Targets="FieldReport:Make;Review:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
