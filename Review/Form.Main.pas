@@ -74,7 +74,7 @@ procedure TMainForm.FormShow(Sender: TObject);
 var
   LPoller: ISQSQueuePoller;
 begin
-  LPoller := TSQSQueuePoller.Create(QUEUE_URL, Client);
+  LPoller := TSQSQueuePoller.Create(NewReportQueue, Client);
   LPoller.MaxNumberOfMessages := 1;
   LPoller.SkipDelete := True;
   TTask.Run(
@@ -113,7 +113,7 @@ begin
   if not Assigned(FOptions) then
   begin
     FOptions := TSQSOptions.Create;
-    FOptions.Region := REGION;
+    FOptions.Region := AwsRegion;
   end;
 
   Result := FOptions;

@@ -3,8 +3,10 @@
 interface
 
 const
-  REGION = '';
-  QUEUE_URL = '';
+  AccessKeyId = '';
+  SecretAccessKey = '';
+  AwsRegion = '';
+  NewReportQueue = '';
 
 implementation
 

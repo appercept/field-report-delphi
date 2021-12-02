@@ -81,11 +81,11 @@ begin
         APicture.SaveToStream(LStream);
         LStream.Seek(0, soBeginning);
         LOptions := TS3Options.Create;
-        LOptions.AccessKeyId := ACCESS_KEY_ID;
-        LOptions.SecretAccessKey := SECRET_ACCESS_KEY;
-        LOptions.Region := BUCKET_REGION;
+        LOptions.AccessKeyId := AccessKeyId;
+        LOptions.SecretAccessKey := SecretAccessKey;
+        LOptions.Region := AwsRegion;
         LS3 := TS3Client.Create(LOptions);
-        LRequest := TS3PutObjectRequest.Create(BUCKET_NAME, ReportKey, LStream);
+        LRequest := TS3PutObjectRequest.Create(InboundReportsBucketName, ReportKey, LStream);
         LRequest.ContentType := 'image/png';
         LRequest.Tags.AddTag('Notes', AReport);
         LRequest.OnSendData := procedure(const AContentLength: Int64; AWriteCount: Int64; var AAbort: Boolean)
