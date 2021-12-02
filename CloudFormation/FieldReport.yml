@@ -77,6 +77,56 @@ Resources:
           - ServerSideEncryptionByDefault:
               SSEAlgorithm: AES256
 
+  FieldReportUser:
+    Type: AWS::IAM::User
+    Properties:
+      Policies:
+        - PolicyName: AllowInboundReports
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:Put*
+                Resource:
+                  - !Join
+                    - "/"
+                    - - !GetAtt InboundReports.Arn
+                      - "*"
+
+  FieldReportUserAccessKey:
+    Type: AWS::IAM::AccessKey
+    Properties:
+      UserName: !Ref FieldReportUser
+
+  ReviewUser:
+    Type: AWS::IAM::User
+    Properties:
+      Policies:
+        - PolicyName: AllowReviewReports
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - sqs:*
+                Resource:
+                  - !GetAtt NewReportQueue.Arn
+              - Effect: Allow
+                Action:
+                  - s3:Get*
+                Resource:
+                  - !Join
+                    - "/"
+                    - - !GetAtt InboundReports.Arn
+                      - "*"
+
+  ReviewUserAccessKey:
+    Type: AWS::IAM::AccessKey
+    Properties:
+      UserName: !Ref ReviewUser
+
+
 Outputs:
   InboundReportsBucketName:
     Description: The name of the bucket for inbound reports.
@@ -90,3 +140,15 @@ Outputs:
   ArchiveReportsBucketName:
     Description: The name of the bucket for archive reports.
     Value: !Ref ArchiveReports
+  FieldReportAccessKeyId:
+    Description: Access Key Id for use in Field Report app.
+    Value: !Ref FieldReportUserAccessKey
+  FieldReportSecretAccessKey:
+    Description: Secret Access Key for use in Field Report app.
+    Value: !GetAtt FieldReportUserAccessKey.SecretAccessKey
+  ReviewAccessKeyId:
+    Description: Access Key Id for use in Review app.
+    Value: !Ref ReviewUserAccessKey
+  ReviewSecretAccessKey:
+    Description: Secret Access Key for use in Review app.
+    Value: !GetAtt ReviewUserAccessKey.SecretAccessKey
