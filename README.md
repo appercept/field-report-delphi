@@ -15,12 +15,12 @@ before presentation.
 
 - [x] CloudFormation script to deploy resources on AWS.
   - [x] IAM Users and credentials for front-end applications.
-- [-] Field Report app.
+- [ ] Field Report app.
   - [x] Take photo.
   - [x] Attach notes.
   - [x] Upload to S3.
   - [ ] Register for push notifications.
-- [-] Review app.
+- [ ] Review app.
   - [x] Poll "new messages"  queue.
   - [x] Fetch photo from S3.
   - [x] Display photo.
