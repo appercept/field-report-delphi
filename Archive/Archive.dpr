@@ -40,15 +40,21 @@ begin
   LS3Options := TS3Options.Create(Options);
   LS3Client := TS3Client.Create(LS3Options);
   LRequest := TS3CopyObjectRequest.Create(
-    ArchiveReportsBucket,
-    Format('s3://%s/%s', [InboundReportsBucket, AReportKey]),
+    ArchiveReportsBucketName,
+    Format('s3://%s/%s', [InboundReportsBucketName, AReportKey]),
     AReportKey
   );
-  LResponse := LS3Client.CopyObject(LRequest);
-  if LResponse.IsSuccessful then
-    Log('done.')
-  else
-    Log('error.');
+  try
+    LResponse := LS3Client.CopyObject(LRequest);
+    if LResponse.IsSuccessful then
+      Writeln('done.');
+  except
+    on E: ES3Exception do
+    begin
+      Writeln('error:');
+      Log(E.Message);
+    end;
+  end;
 end;
 
 procedure ProcessArchiveRequest(const AMessage: ISQSMessage);

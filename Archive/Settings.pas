@@ -7,8 +7,8 @@ const
   SecretAccessKey = '';
   AwsRegion = '';
   ArchiveQueue = '';
-  ArchiveReportsBucket = '';
-  InboundReportsBucket = '';
+  ArchiveReportsBucketName = '';
+  InboundReportsBucketName = '';
 
 implementation
 
