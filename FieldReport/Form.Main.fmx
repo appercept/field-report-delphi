@@ -11,16 +11,16 @@ object HeaderFooterForm: THeaderFooterForm
   OnCreate = FormCreate
   OnVirtualKeyboardShown = FormVirtualKeyboardShown
   OnVirtualKeyboardHidden = FormVirtualKeyboardHidden
-  DesignerMasterStyle = 0
+  DesignerMasterStyle = 2
   object Header: TToolBar
     Size.Width = 384.000000000000000000
-    Size.Height = 48.000000000000000000
+    Size.Height = 44.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
     object HeaderLabel: TLabel
       Align = Contents
       Size.Width = 384.000000000000000000
-      Size.Height = 48.000000000000000000
+      Size.Height = 44.000000000000000000
       Size.PlatformDefault = False
       StyleLookup = 'toollabel'
       TextSettings.HorzAlign = Center
@@ -29,9 +29,9 @@ object HeaderFooterForm: THeaderFooterForm
   end
   object Footer: TToolBar
     Align = Bottom
-    Position.Y = 499.000000000000000000
+    Position.Y = 503.000000000000000000
     Size.Width = 384.000000000000000000
-    Size.Height = 48.000000000000000000
+    Size.Height = 44.000000000000000000
     Size.PlatformDefault = False
     StyleLookup = 'bottomtoolbar'
     TabOrder = 1
@@ -40,8 +40,8 @@ object HeaderFooterForm: THeaderFooterForm
       Align = Center
       Enabled = True
       ImageIndex = -1
-      Size.Width = 48.000000000000000000
-      Size.Height = 48.000000000000000000
+      Size.Width = 44.000000000000000000
+      Size.Height = 44.000000000000000000
       Size.PlatformDefault = False
       StyleLookup = 'cameratoolbutton'
     end
@@ -50,9 +50,9 @@ object HeaderFooterForm: THeaderFooterForm
       Align = Right
       Enabled = True
       ImageIndex = -1
-      Position.X = 336.000000000000000000
-      Size.Width = 48.000000000000000000
-      Size.Height = 48.000000000000000000
+      Position.X = 340.000000000000000000
+      Size.Width = 44.000000000000000000
+      Size.Height = 44.000000000000000000
       Size.PlatformDefault = False
       StyleLookup = 'organizetoolbutton'
     end
@@ -61,15 +61,15 @@ object HeaderFooterForm: THeaderFooterForm
       Align = Left
       Enabled = True
       ImageIndex = -1
-      Size.Width = 48.000000000000000000
-      Size.Height = 48.000000000000000000
+      Size.Width = 44.000000000000000000
+      Size.Height = 44.000000000000000000
       Size.PlatformDefault = False
       StyleLookup = 'trashtoolbutton'
     end
   end
   object ComposePanel: TPanel
     Align = Bottom
-    Position.Y = 379.000000000000000000
+    Position.Y = 383.000000000000000000
     Size.Width = 384.000000000000000000
     Size.Height = 120.000000000000000000
     Size.PlatformDefault = False
@@ -100,18 +100,18 @@ object HeaderFooterForm: THeaderFooterForm
       Size.Height = 104.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
-      Viewport.Width = 252.000000000000000000
-      Viewport.Height = 100.000000000000000000
+      Viewport.Width = 248.000000000000000000
+      Viewport.Height = 96.000000000000000000
     end
   end
   object ReportContainer: TVertScrollBox
     Align = Client
     Size.Width = 384.000000000000000000
-    Size.Height = 331.000000000000000000
+    Size.Height = 339.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 6
     Viewport.Width = 384.000000000000000000
-    Viewport.Height = 331.000000000000000000
+    Viewport.Height = 339.000000000000000000
   end
   object ActionList1: TActionList
     Left = 56

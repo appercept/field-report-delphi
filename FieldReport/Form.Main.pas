@@ -51,6 +51,8 @@ uses Frame.ReportItem;
 procedure THeaderFooterForm.FormCreate(Sender: TObject);
 begin
   ComposePanel.Visible := False;
+  ActionDiscardReport.Enabled := False;
+  ActionSaveReport.Enabled := False;
 end;
 
 procedure THeaderFooterForm.FormVirtualKeyboardHidden(Sender: TObject;
@@ -68,6 +70,8 @@ end;
 procedure THeaderFooterForm.ActionDiscardReportExecute(Sender: TObject);
 begin
   ComposePanel.Visible := False;
+  ActionDiscardReport.Enabled := False;
+  ActionSaveReport.Enabled := False;
 end;
 
 procedure THeaderFooterForm.ActionSaveReportExecute(Sender: TObject);
@@ -80,6 +84,7 @@ begin
   LReportItem.Parent := ReportContainer.Content;
   LReportItem.Position.Y := LReportItem.Height * ReportContainer.Content.ChildrenCount + 1;
   LReportItem.UploadReport(PreviewImage.Bitmap, NotesEdit.Text);
+  ActionDiscardReport.Execute;
 end;
 
 procedure THeaderFooterForm.ActionTakePhotoForReportDidFinishTaking(
@@ -89,6 +94,8 @@ begin
   NotesEdit.Lines.Clear;
   ComposePanel.Visible := True;
   NotesEdit.SetFocus;
+  ActionDiscardReport.Enabled := True;
+  ActionSaveReport.Enabled := True;
 end;
 
 end.
