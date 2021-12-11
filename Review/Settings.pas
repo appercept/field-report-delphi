@@ -7,6 +7,7 @@ const
   SecretAccessKey = '';
   AwsRegion = '';
   NewReportQueue = '';
+  ArchiveQueue = '';
 
 implementation
 

@@ -7,7 +7,8 @@ object MainForm: TMainForm
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
-  OnClose = FormClose
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
   OnShow = FormShow
   DesignerMasterStyle = 0
   object ReviewImage: TImage
@@ -23,7 +24,7 @@ object MainForm: TMainForm
     Size.Height = 368.000000000000000000
     Size.PlatformDefault = False
   end
-  object Memo1: TMemo
+  object NotesMemo: TMemo
     Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
     DataDetectorTypes = []
     Align = Bottom
@@ -56,5 +57,36 @@ object MainForm: TMainForm
     OnTimer = CountDownTimerTimer
     Left = 304
     Top = 224
+  end
+  object DiscardButton: TButton
+    Action = DiscardAction
+    Anchors = [akLeft, akBottom]
+    Enabled = True
+    ImageIndex = -1
+    Position.X = 16.000000000000000000
+    Position.Y = 344.000000000000000000
+    TabOrder = 5
+  end
+  object ApproveButton: TButton
+    Action = ArchiveAction
+    Anchors = [akRight, akBottom]
+    Enabled = True
+    ImageIndex = -1
+    Position.X = 544.000000000000000000
+    Position.Y = 344.000000000000000000
+    StyleLookup = 'ApproveButtonStyle1'
+    TabOrder = 6
+  end
+  object ActionList1: TActionList
+    Left = 152
+    Top = 128
+    object ArchiveAction: TAction
+      Text = 'Archive'
+      OnExecute = ArchiveActionExecute
+    end
+    object DiscardAction: TAction
+      Text = 'Discard'
+      OnExecute = DiscardActionExecute
+    end
   end
 end
