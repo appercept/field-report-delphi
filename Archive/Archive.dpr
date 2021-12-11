@@ -41,7 +41,7 @@ begin
   LS3Client := TS3Client.Create(LS3Options);
   LRequest := TS3CopyObjectRequest.Create(
     ArchiveReportsBucketName,
-    Format('s3://%s/%s', [InboundReportsBucketName, AReportKey]),
+    Format('%s/%s', [InboundReportsBucketName, AReportKey]),
     AReportKey
   );
   try
@@ -63,7 +63,7 @@ var
   LReportKey: string;
 begin
   LJSON := TJSONObject.ParseJSONValue(AMessage.Body) as TJSONObject;
-  if LJSON.TryGetValue<string>('', LReportKey) then
+  if LJSON.TryGetValue<string>('key', LReportKey) then
     ArchiveReport(LReportKey);
 end;
 
