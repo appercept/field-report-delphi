@@ -69,6 +69,9 @@ Resources:
       Queues:
         - !Ref NewReportQueue
 
+  ArchiveQueue:
+    Type: AWS::SQS::Queue
+
   ArchiveReports:
     Type: AWS::S3::Bucket
     Properties:
@@ -111,6 +114,7 @@ Resources:
                 Action:
                   - sqs:*
                 Resource:
+                  - !GetAtt ArchiveQueue.Arn
                   - !GetAtt NewReportQueue.Arn
               - Effect: Allow
                 Action:
@@ -126,6 +130,44 @@ Resources:
     Properties:
       UserName: !Ref ReviewUser
 
+  ArchiveUser:
+    Type: AWS::IAM::User
+    Properties:
+      Policies:
+        - PolicyName: AllowReceiveReports
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - sqs:*
+                Resource:
+                  - !GetAtt ArchiveQueue.Arn
+              - Effect: Allow
+                Action:
+                  - s3:Get*
+                Resource:
+                  - !Join
+                    - "/"
+                    - - !GetAtt InboundReports.Arn
+                      - "*"
+        - PolicyName: AllowArchiveReports
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:Put*
+                Resource:
+                  - !Join
+                    - "/"
+                    - - !GetAtt ArchiveReports.Arn
+                      - "*"
+
+  ArchiveUserAccessKey:
+    Type: AWS::IAM::AccessKey
+    Properties:
+      UserName: !Ref ArchiveUser
 
 Outputs:
   InboundReportsBucketName:
@@ -152,3 +194,12 @@ Outputs:
   ReviewSecretAccessKey:
     Description: Secret Access Key for use in Review app.
     Value: !GetAtt ReviewUserAccessKey.SecretAccessKey
+  ArchiveQueue:
+    Description: The SQS Queue URL for archiving reports.
+    Value: !Ref ArchiveQueue
+  ArchiveAccessKeyId:
+    Description: Access Key Id for use in Archive app.
+    Value: !Ref ArchiveUserAccessKey
+  ArchiveSecretAccessKey:
+    Description: Secret Access Key for use in Archive app.
+    Value: !GetAtt ArchiveUserAccessKey.SecretAccessKey
